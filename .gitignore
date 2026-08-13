@@ -359,5 +359,12 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
+# Workspace repositories cloned by setup.ps1. They keep their own Git history.
+/MediaVault.Api/
+/MediaVault.Clients/
+
+# Local launcher preference written by run.ps1.
+/.mediavault-preset
+
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
