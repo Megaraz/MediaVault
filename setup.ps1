@@ -62,4 +62,4 @@ if ($InstallDependencies) {
 }
 
 Write-Host 'MediaVault workspace is ready.' -ForegroundColor Green
-Write-Host 'Run ./run.ps1 to choose what Aspire should start.'
+Write-Host 'Select the interactive AppHost profile in Visual Studio, or run the AppHost directly.'
