@@ -120,8 +120,7 @@ MediaVault/
 ├── MediaVault.AppHost/  local Aspire orchestration
 ├── MediaVault.Api/      independent Git repository
 ├── MediaVault.Clients/  independent Git repository
-├── setup.ps1
-└── run.ps1
+└── setup.ps1
 ```
 
 Before the first run, configure API user secrets and provider credentials as
@@ -133,10 +132,17 @@ and ensure an emulator or device is available.
 
 ## Run with Aspire
 
-Launch the interactive menu:
+In Visual Studio, select the `interactive` profile beside the Run button and
+press F5 to choose API, Web, and Android resources with the keyboard. The
+`last` profile starts the most recently selected resource set without prompting.
+The existing `http` and `https` profiles remain available for fixed-profile
+runs.
+
+From the command line, launch the same profiles with:
 
 ```powershell
-./run.ps1
+dotnet run --project MediaVault.AppHost --launch-profile interactive
+dotnet run --project MediaVault.AppHost --launch-profile last
 ```
 
 Available presets are:
@@ -148,18 +154,20 @@ Available presets are:
 | `android` | Backend and Android client |
 | `all` | Backend, web, and Android clients |
 
-The menu remembers the most recent selection in a local ignored file. You
-can select it with `L`, or bypass the menu for repeatable commands:
-
-```powershell
-./run.ps1 -Preset web
-./run.ps1 -Preset all
-```
+The selector remembers the most recent selection in the local ignored
+`.mediavault-preset` file. Use `interactive` to change it, or `last` to reuse
+it without prompting. The `http` profile is the normal local-development
+profile; use `https` only when HTTPS is specifically needed.
 
 Aspire opens its dashboard and starts the selected resources. The web app is
 available at `https://localhost:61366`; the API uses
-`http://localhost:5210`. The Android preset starts Expo with the emulator-safe
-API address `http://10.0.2.2:5210`.
+`http://localhost:5210`. The Android preset starts `npx expo start --lan` from
+the mobile app directory and points a physical device at the development PC's
+LAN API address, `http://192.168.0.12:5210`. The phone and PC must be on the
+same Wi-Fi network, and the API port must be allowed through the Windows
+firewall. Override the address when needed by setting
+`MEDIAVAULT_ANDROID_API_URL=http://<pc-lan-ip>:5210` before launching the
+AppHost.
 
 ## Design choices
 

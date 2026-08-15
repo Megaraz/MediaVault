@@ -363,7 +363,7 @@ MigrationBackup/
 /MediaVault.Api/
 /MediaVault.Clients/
 
-# Local launcher preference written by run.ps1.
+# Local resource selection preference written by the AppHost.
 /.mediavault-preset
 
 # Fody - auto-generated XML schema
